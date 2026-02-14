@@ -1,0 +1,25 @@
+.heart-particle {
+    position: fixed;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: heartFloat 1s ease-out forwards;
+    opacity: 0.9;
+}
+
+/* Animación suave */
+@keyframes heartFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -80%) scale(1.2) rotate(30deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -140%) scale(0.4) rotate(80deg);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,820 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  cursor: url("./Media/icons8-koya-bt21.svg") 20 20, auto;
+  background: #f7e1ff;
+}
+
+/* Contenedor del botón */
+.heart-btn-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botón corazón real */
+#heartBtn {
+  width: 150px;
+  height: 150px;
+  background: #ff3b7b;
+  clip-path: path("M75 30 C75 0, 150 0, 150 45 C150 90, 75 140, 75 140 C75 140, 0 90, 0 45 C0 0, 75 0, 75 30 Z");
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  transform: translateY(0);
+  box-shadow: 0 0 35px rgba(255, 0, 120, 0.6);
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+#carta {
+  margin-top: -96vh;
+
+}
+
+#heartBtn:hover {
+  transform: scale(1.08);
+  background: #ff1a65;
+}
+
+/* Carta principal */
+.card {
+  width: 90%;
+  background: #fff;
+  border-radius: 20px;
+  margin: 50px auto;
+  display: none;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+}
+
+
+header {
+  border-radius: 20px;
+  margin: 10px auto;
+  z-index: 5;
+  margin-bottom: -10px;
+  margin-top: 15px;
+}
+
+h1 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: 900;
+  font-size: 26px;
+}
+
+/* Texto */
+.left-text {
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+/* Tu marco original mejorado */
+.marco {
+  position: relative;
+  border: 3px dashed #ff7bbf;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(to bottom,
+      #63b4ff 0%,
+      #f4e5ff 30%,
+      #e9c8ff 60%,
+      #d7aaff 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.382);
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Canvas ocupa todo */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  /* para que no interfiera con clics */
+}
+
+/* contenido encima */
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+
+.Parrafo {
+  margin: 10px 0;
+  padding-bottom: 20px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: medium
+}
+
+p {
+  margin: 10px 0;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', bold cursive;
+  font-size: medium
+}
+
+/* Animaciones internas */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-120vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(50deg);
+    opacity: 0;
+  }
+}
+
+/* 🔥 Imagen lateral decorativa con fondo que SÍ empuja texto */
+.side-image {
+  width: 260px;
+  margin: 20px;
+  margin-bottom: 40px;
+  float: left;
+  /* por defecto lado izquierdo */
+  z-index: 10;
+  position: relative;
+}
+
+.side-image.right {
+  float: right;
+}
+
+
+/* Fondo inclinado que empuja el texto */
+.side-image .side-bg {
+  width: 100%;
+  height: 260px;
+  background: #7cd875;
+  border-radius: 25px;
+  transform: rotate(-12deg);
+  z-index: 1;
+  position: relative;
+  /* ahora empuja el texto */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+  margin-bottom: -260px;
+  /* truco: mantiene la imagen encima */
+}
+
+/* Imagen encima del fondo */
+.side-image img {
+  width: 100%;
+  height: 260px;
+  border-radius: 25px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  transform: rotate(2deg);
+  display: block;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Permitir que sobresalga del card */
+.card {
+  overflow: visible !important;
+}
+
+
+
+
+
+/* 🔳 Contenedor de imagen lateral (NOMBRE NUEVO) */
+.float-img-box {
+  display: block;
+  /* Se comporta como un bloque normal */
+  clear: both;
+  /* NO permite que otra imagen se monte sobre ella */
+  position: relative;
+  /* Permite ponerlas encima del card */
+  z-index: 500;
+  pointer-events: none;
+  width: 180px;
+  margin: 10px auto;
+  /* Centrado opcional */
+}
+
+/* Izquierda */
+.float-img-left {
+  float: left;
+  margin-right: 20px;
+}
+
+/* Derecha */
+.float-img-right {
+  float: right;
+  margin-right: -50px;
+  margin-left: 20px;
+}
+
+/* Imagen interna */
+.float-img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* atraviesa el card blanco */
+  position: relative;
+  z-index: 9999;
+
+  /* sombra bonita opcional */
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+@media (min-width: 600px) {
+  .float-img-right {
+    margin-right: 30px;
+    /* se activa SOLO en pantallas grandes */
+    margin-left: 20px;
+    float: right;
+  }
+
+  .float-img {
+    width: 190px;
+  }
+}
+
+@media (min-width: 700px) {
+  .float-img-right {
+    margin-right: 50px;
+    /* se activa SOLO en pantallas grandes */
+    margin-left: 20px;
+    float: right;
+  }
+
+  .float-img {
+    width: 200px;
+  }
+}
+
+@media (min-width: 800px) {
+  .float-img-right {
+    margin-right: 80px;
+    /* se activa SOLO en pantallas grandes */
+    margin-left: 20px;
+    float: right;
+    /* Se agregan estas: */
+    position: absolute;
+    /* ahora está encima del card */
+    left: 70%;
+    /* centrar horizontalmente */
+    transform: translateX(-50%);
+    margin: 0 !important;
+    /* sin margen lateral */
+    z-index: 9999;
+    /* por encima de todo */
+    pointer-events: none;
+    /* no bloquea clics */
+  }
+
+  .float-img {
+    width: 205px;
+  }
+}
+
+@media (min-width: 900px) {
+  .float-img-right {
+    margin-right: 80px;
+    /* se activa SOLO en pantallas grandes */
+    margin-left: 20px;
+    float: right;
+    /* Se agregan estas: */
+    position: absolute;
+    /* ahora está encima del card */
+    left: 65%;
+    /* centrar horizontalmente */
+    transform: translateX(-50%);
+    margin: 0 !important;
+    /* sin margen lateral */
+    z-index: 9999;
+    /* por encima de todo */
+    pointer-events: none;
+    /* no bloquea clics */
+  }
+
+  .float-img {
+    width: 210px;
+  }
+}
+
+@media (min-width: 900px) {
+  .float-img-right {
+    margin-right: 80px;
+    /* se activa SOLO en pantallas grandes */
+    margin-left: 20px;
+    float: right;
+    /* Se agregan estas: */
+    position: absolute;
+    /* ahora está encima del card */
+    left: 57%;
+    /* centrar horizontalmente */
+    transform: translateX(-50%);
+    margin: 0 !important;
+    /* sin margen lateral */
+    z-index: 9999;
+    /* por encima de todo */
+    pointer-events: none;
+    /* no bloquea clics */
+  }
+
+  .float-img {
+    width: 212px;
+  }
+}
+
+/* 🖥️ Pantallas grandes (más de 1000px) */
+@media (min-width: 1100px) {
+  .float-img-box {
+    /* Se mantienen estas propiedades: */
+    display: block;
+    /* SIGUE siendo bloque */
+    clear: both;
+    /* SIGUE empujando otras imágenes */
+
+    /* Se agregan estas: */
+    position: absolute;
+    /* ahora está encima del card */
+    left: 50%;
+    /* centrar horizontalmente */
+    transform: translateX(-50%);
+    margin: 0 !important;
+    /* sin margen lateral */
+    z-index: 9999;
+    /* por encima de todo */
+    pointer-events: none;
+    /* no bloquea clics */
+    width: 230px;
+    /* tamaño mayor (opcional) */
+  }
+
+  .float-img {
+    width: 100%;
+  }
+}
+
+
+.linea {
+  font-family: 'Comic Sans MS', cursive;
+  display: inline-block;
+  padding: 3px 6px;
+}
+
+.ingles {
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.espacio {
+  height: 20px;
+}
+
+
+
+.video-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+.video-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+}
+
+.video-wrapper.playing {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.video-wrapper:hover {
+  transform: scale(1.01);
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+  border-radius: 24px;
+}
+
+/* Indicador sutil de play */
+.play-indicator {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.25), transparent 60%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.play-indicator::before {
+  content: "";
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  mask: url("data:image/svg+xml;utf8,<svg fill='black' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><polygon points='8,5 19,12 8,19'/></svg>") center / 60% no-repeat;
+}
+
+.video-wrapper.playing .play-indicator {
+  opacity: 0;
+}
+
+.video-wrapper {
+  backdrop-filter: blur(8px);
+}
+
+.video-wrapper.playing {
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+
+
+/* CONTENEDOR PRINCIPAL */
+.imagen-destacada {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Caja que contiene la imagen */
+.imagen-box {
+  width: 100%;
+  max-width: 1700px;
+  /* evita que se estire demasiado en pantallas enormes */
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  /* Sombra base elegante */
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.25),
+    0 10px 25px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* Imagen */
+.imagen-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+/* Hover interactivo */
+.imagen-box:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.35),
+    0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.imagen-box:hover img {
+  transform: scale(1.06);
+}
+
+/* ===== CONTENIDO ===== */
+
+/* CONTENEDOR LATERAL */
+
+.tiktok-container {
+
+  width: 340px;
+  max-width: 95%;
+  align-items: center;
+  margin: 25px;
+  padding-bottom: 30px;
+
+}
+
+.tiktok-container.derecha {
+  float: right;
+  margin-left: 25px;
+  margin-right: 7px;
+}
+
+.tiktok-container.izquierda {
+  float: left;
+  margin-right: 25px;
+  margin-left: 7px;
+}
+
+
+/* PLAYER */
+
+.tiktok-player {
+
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 9/16;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background: black;
+
+  cursor: pointer;
+
+  transition: .35s;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, .4);
+
+}
+
+.tiktok-player:hover {
+
+  transform: scale(1.03);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, .6);
+
+}
+
+
+/* VIDEO */
+
+.tiktok-player video {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+
+/* OVERLAY */
+
+.tiktok-overlay {
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+
+
+/* GRADIENTE INFERIOR */
+
+.tiktok-overlay::after {
+
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 40%;
+
+  background:
+    linear-gradient(transparent,
+      rgba(0, 0, 0, .85));
+
+}
+
+
+/* INFO ABAJO IZQUIERDA */
+
+.tiktok-info {
+
+  position: absolute;
+
+  bottom: 20px;
+  left: 15px;
+
+  color: white;
+
+  z-index: 2;
+
+}
+
+.tiktok-username {
+
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+.tiktok-desc {
+
+  font-size: 14px;
+  opacity: .9;
+
+}
+
+.tiktok-sound {
+
+  font-size: 13px;
+  opacity: .7;
+
+}
+
+
+/* BOTONES DERECHA */
+
+.tiktok-sidebar {
+
+  position: absolute;
+
+  right: 10px;
+  bottom: 90px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  align-items: center;
+
+  z-index: 2;
+
+}
+
+
+/* AVATAR */
+
+.tiktok-avatar {
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  border: 2px solid white;
+
+  object-fit: cover;
+
+}
+
+
+/* BOTONES */
+
+.tiktok-btn {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  font-size: 26px;
+
+  cursor: pointer;
+
+  transition: .2s;
+
+}
+
+.tiktok-btn:hover {
+
+  transform: scale(1.2);
+
+}
+
+.tiktok-btn span {
+
+  font-size: 13px;
+
+  margin-top: 2px;
+
+}
+
+
+/* BARRA INFERIOR */
+
+.tiktok-bottom {
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 55px;
+
+  background: black;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  color: white;
+
+  font-size: 22px;
+
+}
+
+
+/* CLEAR FLOAT */
+
+.clear {
+  clear: both;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:700px) {
+
+  .tiktok-container {
+
+    float: none;
+    margin: auto;
+
+    display: block;
+
+  }
+
+}

@@ -1,0 +1,138 @@
+/* =====================================
+   📦 CONTENEDOR FLOTANTE DEL SPOTIFY
+===================================== */
+.spotify-card {
+    width: 280px;
+    margin: 20px;
+    margin-left: 0px;
+    float: left;
+    /* Empuja texto a la derecha */
+    position: relative;
+    z-index: 10;
+    /* Para sobresalir del card */
+}
+
+/* Para ponerlo del lado derecho */
+.spotify-card.right {
+    float: right;
+    margin-right: 0px;
+}
+
+/* Limpia floats después del reproductor */
+.spotify-card::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Asegura que el card blanco no lo recorte */
+.card {
+    overflow: visible !important;
+}
+
+
+/* =====================================
+   🎵 DISEÑO ORIGINAL DEL REPRODUCTOR
+===================================== */
+
+/* Transición base */
+.music-card {
+    width: 100%;
+    background: #111;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+/* ✨ HOVER PRINCIPAL */
+.spotify-card:hover .music-card {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(0, 255, 120, 0.4);
+    background: #151515;
+}
+
+/* Opcional: brillo en portada al pasar el mouse */
+.spotify-card:hover .cover-container img {
+    filter: brightness(1.1);
+    transition: filter 0.35s ease;
+}
+
+/* Opcional: botón play se agranda un poco */
+.spotify-card:hover .play-btn {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 120, 0.6);
+}
+
+.cover-container img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #00c853;
+}
+
+.info {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.info h2 {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.info p {
+    font-size: 14px;
+    color: #bbb;
+    margin: 0;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+#progressBar {
+    width: 100%;
+    accent-color: #00e676;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.play-btn {
+    background: #00e676;
+    border: none;
+    color: #000;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.play-btn:hover {
+    background: #00ff7f;
+}

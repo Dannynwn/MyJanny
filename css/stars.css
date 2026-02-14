@@ -1,0 +1,112 @@
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: -3;
+    background: linear-gradient(to bottom,
+            #f7e1ff 0%,
+            #e0b3ff 30%,
+            #c266ff 60%,
+            #8a00ff 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 12s ease infinite;
+}
+
+/* Capas extra para más profundidad */
+.background::before,
+.background::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(200, 100, 255, 0.3), transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(140, 0, 255, 0.4), transparent 50%);
+    animation: floating 20s ease-in-out infinite alternate;
+}
+
+.background::after {
+    animation-duration: 30s;
+    opacity: 0.6;
+}
+
+/* Animación del degradado */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+#space {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+    pointer-events: none;
+}
+
+/* Movimiento suave */
+@keyframes floating {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(50px, 50px) rotate(3deg);
+    }
+}
+
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, white, transparent);
+    opacity: 0.8;
+    transform: rotate(45deg);
+    z-index: -1;
+    animation: shooting 8s linear infinite;
+}
+
+@keyframes shooting {
+    0% {
+        top: -100px;
+        left: 80%;
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    20% {
+        top: 60%;
+        left: 40%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
